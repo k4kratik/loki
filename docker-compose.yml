@@ -18,3 +18,16 @@ services:
       - "3100:3100"
     volumes:
       - ./local_bind_volume_dir:/data/loki
+
+  grafana:
+    image: grafana/grafana:latest
+    deploy:
+      mode: replicated
+      replicas: 1
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    ports:
+      - 3000:3000
+
+  volumes:
+    grafana-storage:
